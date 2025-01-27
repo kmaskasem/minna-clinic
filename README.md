@@ -1,3 +1,75 @@
+
+# Minna Clinic V0
+
+Minna Clinic V0 เป็นโปรเจคระบบคลินิกที่พัฒนาด้วย Laravel ที่ใช้สำหรับจัดการข้อมูลยาและการจ่ายยา
+
+## การติดตั้งโปรเจค
+
+### ขั้นตอนที่ 1: Clone โปรเจคจาก GitHub
+
+เปิด Terminal และใช้คำสั่งนี้เพื่อ Clone โปรเจคจาก GitHub:
+
+```bash
+git clone https://github.com/your-username/minna-clinic-v0.git
+```
+
+### ขั้นตอนที่ 2: ติดตั้ง Dependencies
+
+ไปที่โฟลเดอร์โปรเจคและติดตั้ง dependencies โดยใช้ Composer:
+
+```bash
+cd minna-clinic-v0
+composer install
+```
+
+### ขั้นตอนที่ 3: สร้างไฟล์ `.env`
+
+ทำการคัดลอกไฟล์ `.env.example` มาเป็น `.env`:
+
+```bash
+cp .env.example .env
+```
+
+### ขั้นตอนที่ 4: ตั้งค่าฐานข้อมูล
+
+ในไฟล์ `.env` ให้ตั้งค่าการเชื่อมต่อกับฐานข้อมูลของคุณ เช่น:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
+
+### ขั้นตอนที่ 5: สร้างคีย์แอพพลิเคชั่น
+
+รันคำสั่งนี้เพื่อสร้างคีย์แอพพลิเคชั่น:
+
+```bash
+php artisan key:generate
+```
+
+### ขั้นตอนที่ 6: รันการย้ายฐานข้อมูล (Migrations)
+
+รันคำสั่งเพื่อสร้างตารางในฐานข้อมูล:
+
+```bash
+php artisan migrate
+```
+
+### ขั้นตอนที่ 7: รันโปรเจค
+
+ใช้คำสั่งนี้เพื่อรันโปรเจค:
+
+```bash
+php artisan serve
+```
+
+หลังจากรันคำสั่งนี้คุณสามารถเข้าไปที่ [http://localhost:8000](http://localhost:8000) บนเว็บเบราว์เซอร์เพื่อใช้งานโปรเจค
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
