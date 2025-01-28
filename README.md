@@ -1,3 +1,97 @@
+
+# Minna Clinic V0
+
+Minna Clinic V0 เป็นโปรเจคระบบคลินิกที่พัฒนาด้วย Laravel 11 + Livewire 3 + Tailwind ที่ใช้สำหรับจัดการข้อมูลยาและการจ่ายยา
+
+## การติดตั้งโปรเจค
+
+### 1: Clone โปรเจคจาก GitHub
+
+เปิด Terminal และใช้คำสั่งนี้เพื่อ Clone โปรเจคจาก GitHub:
+
+```bash
+git clone https://github.com/your-username/minna-clinic-v0.git
+```
+
+### 2: ติดตั้ง Dependencies
+
+ไปที่โฟลเดอร์โปรเจคและติดตั้ง dependencies โดยใช้ Composer:
+
+```bash
+cd minna-clinic-v0
+composer install
+```
+
+### 3: ติดตั้ง Vite
+
+ติดตั้ง Vite เพื่อช่วยจัดการ Tailwind CSS:
+
+```bash
+npm install
+```
+
+### 4: สร้างไฟล์ `.env`
+
+ทำการคัดลอกไฟล์ `.env.example` มาเป็น `.env`:
+
+```bash
+cp .env.example .env
+```
+
+### 5: ตั้งค่าฐานข้อมูล
+
+ในไฟล์ `.env` ให้ตั้งค่าการเชื่อมต่อกับฐานข้อมูล เช่น:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database_name
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+```
+
+### 6: สร้างคีย์แอพพลิเคชั่น
+
+รันคำสั่งนี้เพื่อสร้างคีย์แอพพลิเคชั่นสำหรับการเข้ารหัสข้อมูล เช่น การใช้งานฟีเจอร์ Encrypt หรือ Hash:
+
+```bash
+php artisan key:generate
+```
+
+### 7: รันการย้ายฐานข้อมูล (Migrations)
+
+รันคำสั่งเพื่อสร้างตารางในฐานข้อมูล:
+
+```bash
+php artisan migrate
+```
+รันคำสั่งเพื่อสร้างข้อมูล user เริ่มต้น:
+```bash
+php artisan db:seed --class=DatabaseSeeder
+```
+
+### ขั้นตอนที่ 7: รันโปรเจค
+
+ใช้คำสั่งนี้เพื่อรันโปรเจค:
+
+```bash
+php artisan serve
+```
+พร้อมคำสั่งรัน Vite Dev Server ขณะพัฒนา:
+
+```bash
+npm run dev
+```
+หรือรัน Build สำหรับ Production:
+
+```bash
+npm run build
+```
+
+หลังจากรันคำสั่งนี้คุณสามารถเข้าไปที่ [http://127.0.0.1:8000](http://127.0.0.1:8000) บนเว็บเบราว์เซอร์เพื่อใช้งานโปรเจค
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
