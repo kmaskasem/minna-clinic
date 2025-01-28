@@ -7,7 +7,7 @@ use Livewire\Volt\Volt;
 // Volt::route('/', 'pages.auth.login');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('dashboard', 'medical-records')->name('dashboard');
     Route::view('medical-records', 'medical-records')->name('medical-records');
     Route::view('receiving-service', 'receiving-service')->name('receiving-service');
     Route::view('withdraw-medicine', 'withdraw-medicine')->name('withdraw-medicine');

@@ -30,7 +30,7 @@ new class extends Component
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 md:-my-px md:ms-10 md:flex">
-                    <x-nav-link :href="route('medical-records')" :active="request()->routeIs('medical-records')" wire:navigate>
+                    <x-nav-link :href="route('medical-records')" :active="(request()->routeIs('medical-records') || request()->routeIs('dashboard'))" wire:navigate>
                         {{ __('เวชระเบียน') }}
                     </x-nav-link>
                     <x-nav-link :href="route('receiving-service')" :active="request()->routeIs('receiving-service')" wire:navigate>
