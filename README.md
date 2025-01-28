@@ -66,6 +66,10 @@ php artisan key:generate
 ```bash
 php artisan migrate
 ```
+รันคำสั่งเพื่อสร้างข้อมูล user เริ่มต้น:
+```bash
+php artisan db:seed --class=DatabaseSeeder
+```
 
 ### ขั้นตอนที่ 7: รันโปรเจค
 
