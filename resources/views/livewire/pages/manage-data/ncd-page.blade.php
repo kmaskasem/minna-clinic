@@ -60,7 +60,7 @@
                                             </thead>
                                             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
 
-                                            @forelse($ncds as $index => $ncd)
+                                                @forelse($ncds as $index => $ncd)
                                                 <tr class="bg-white">
                                                     <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
                                                         {{ ($ncds->currentPage() - 1) * $ncds->perPage() + $index + 1 }}
@@ -92,8 +92,8 @@
                                                         No ncds found.
                                                     </td>
                                                 </tr>
+                                                @endforelse
                                             </tbody>
-                                            @endforelse
                                         </table>
                                     </div>
                                     <div class="mt-4">

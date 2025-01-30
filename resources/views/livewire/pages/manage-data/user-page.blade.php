@@ -68,9 +68,8 @@
                                                     <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
                                                         <x-danger-button
                                                             x-data="" class="me-3 bg-indigo-500"
-                                                            wire:click="showUser({{ $user->id }})"
-                                                            > 
-                                                            Edit                                                          
+                                                            wire:click="showUser({{ $user->id }})">
+                                                            Edit
                                                         </x-danger-button>
                                                         <x-danger-button
                                                             x-data=""
@@ -85,8 +84,8 @@
                                                         No users found.
                                                     </td>
                                                 </tr>
+                                                @endforelse
                                             </tbody>
-                                            @endforelse
                                         </table>
                                     </div>
                                     <div class="mt-4">

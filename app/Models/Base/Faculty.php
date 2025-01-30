@@ -2,6 +2,7 @@
 
 namespace App\Models\Base;
 
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Model;
 
 class Faculty extends Model
@@ -13,4 +14,9 @@ class Faculty extends Model
         'code',
         'name',
     ];
+
+    // public function patients()
+    // {
+    //     return $this->hasMany(Patient::class, 'fac_id');
+    // }
 }

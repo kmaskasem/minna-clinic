@@ -84,8 +84,8 @@
                                                         No hospitals found.
                                                     </td>
                                                 </tr>
+                                                @endforelse
                                             </tbody>
-                                            @endforelse
                                         </table>
                                     </div>
                                     <div class="mt-4">
