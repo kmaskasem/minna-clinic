@@ -13,6 +13,54 @@
             </div>
         </div>
     </header>
+    <div class="pt-6">
+        <div class="max-w-7xl mx-auto md:px-0 sm:px-6 lg:px-8">
+            <div class="collapse collapse-arrow bg-white sm:rounded-lg">
+                <input type="checkbox" name="my-accordion" id="accordion-1" class="hidden" />
+                <label for="accordion-1" class="collapse-title text-lg text-black font-medium cursor-pointer">
+                    ค้นหา
+                </label>
+                <div class="collapse-content">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+                        <div class="w-full">
+                            <label class="block">ประเภท</label>
+                            <select wire:model.live="search_type" class="border px-3 py-2 rounded-lg w-full">
+                                <option value="">-- โปรดเลือก --</option>
+                                @foreach($patientType ?? [] as $key => $label)
+                                <option value="{{ $key }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <label class="block">สิทธิรักษา</label>
+                            <select wire:model.live="search_healthcode" class="border px-3 py-2 rounded-lg w-full">
+                                <option value="">-- โปรดเลือก --</option>
+                                @foreach($healthcareCode as $key => $label)
+                                <option value="{{ $key }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <label class="block">วันที่เพิ่ม</label>
+                            <input wire:model.live="search_date" type="date" class="border px-3 py-2 rounded-lg w-full">
+                        </div>
+                        <div class="w-full">
+                            <label class="block">เพศ</label>
+                            <select wire:model.live="search_gender" class="border px-3 py-2 rounded-lg w-full" wire:model="gender" id="gender">
+                                <option value="">-- โปรดเลือก --</option>
+                                @foreach($genders as $key => $label)
+                                <option value="{{ $key }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-span-2 flex justify-end">                       
+                             <button class="btn px-4 py-0 bg-gray-800 border border-transparent rounded-md font-semibold">รีเซ็ท</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="py-6">
         <div class="max-w-7xl mx-auto md:px-0 sm:px-6 lg:px-8">
@@ -80,7 +128,7 @@
                                                         {{ ($patients->currentPage() - 1) * $patients->perPage() + $index + 1 }}
                                                     </td>
                                                     <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
-                                                        {{$patient->record_at}}
+                                                        {{$patient->created_at}}
                                                     </td>
                                                     <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
                                                         {{$patient->code_no}}
@@ -97,10 +145,10 @@
                                                             'fac_id => '.$patient->fac_id }}
                                                     </td>
                                                     <td class="px-6 py-4 text-sm leading-5 whitespace-no-wrap">
-                                                        
-                                                            Edit
-                                                            Delete
-                                                            
+
+                                                        Edit
+                                                        Delete
+
                                                     </td>
                                                 </tr>
                                                 @empty
@@ -156,17 +204,17 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
                     <div>
+                        <label class="col-span-1">Code No.</label>
+                        <input wire:model="code_no" type="text" readonly class="border px-3 py-2 mb-3 bg-gray-100 text-gray-700 rounded-lg w-full">
+                        <x-input-error :messages="$errors->get('code_no')" class="mt-2" />
+
                         <label class="block">ประเภท</label>
-                        <select wire:model="patient_type" class="border px-3 py-2 rounded-lg w-full mb-3">
+                        <select wire:model="patient_type" class="border px-3 py-2 rounded-lg w-full">
                             @foreach($patientType ?? [] as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
                         </select>
                         <x-input-error :messages="$errors->get('patient_type')" class="mt-2" />
-
-                        <label class="col-span-1">Code No.</label>
-                        <input wire:model="code_no" type="text" placeholder="Code No." class="border px-3 py-2 rounded-lg w-full">
-                        <x-input-error :messages="$errors->get('code_no')" class="mt-2" />
                     </div>
                     <div class="row-span-2">
                         <label class="block">รูปภาพ</label>
@@ -190,6 +238,45 @@
                             oninput="formatThaiID(this)"
                             onkeypress="return isNumber(event)">
                         <x-input-error :messages="$errors->get('id_card_number')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label class="block">เลขทะเบียนนักศึกษา</label>
+                        <input wire:model="student_id" type="text" class="border px-3 py-2 rounded-lg w-full "
+                            placeholder="เลขทะเบียนนักศึกษา"
+                            onkeypress="return isNumber(event)">
+                        <x-input-error :messages="$errors->get('student_id')" class="mt-2" />
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+                    <div>
+                        <label class="block">คณะ</label>
+                        <select wire:model="" class="border px-3 py-2 rounded-lg w-full" wire:model="gender" id="gender">
+                            <option value="">-- โปรดเลือก --</option>
+                            @foreach($faculites as $key => $label)
+                            <option value="{{ $key }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label class="block">หน่วยงาน</label>
+                        <select wire:model="" class="border px-3 py-2 rounded-lg w-full" wire:model="gender" id="gender">
+                            <option value="">-- โปรดเลือก --</option>
+                            @foreach($orgs as $key => $label)
+                            <option value="{{ $key }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('')" class="mt-2" />
+                    </div>
+                    <div>
+                        <label class="block">ตำแหน่ง</label>
+                        <select wire:model="" class="border px-3 py-2 rounded-lg w-full" wire:model="gender" id="gender">
+                            <option value="">-- โปรดเลือก --</option>
+                            @foreach($positions as $key => $label)
+                            <option value="{{ $key }}">{{ $label }}</option>
+                            @endforeach
+                        </select>
+                        <x-input-error :messages="$errors->get('')" class="mt-2" />
                     </div>
                 </div>
 
@@ -240,6 +327,7 @@
                         <div class="w-full">
                             <label class="block">สิทธิรักษา</label>
                             <select wire:model="healthcare_code" class="border px-3 py-2 rounded-lg w-full">
+                                <option value="">-- โปรดเลือก --</option>
                                 @foreach($healthcareCode as $key => $label)
                                 <option value="{{ $key }}">{{ $label }}</option>
                                 @endforeach
@@ -267,6 +355,7 @@
                     <div class="md:hidden sm:col-span-1 w-full">
                         <label class="block">สิทธิรักษา</label>
                         <select wire:model="healthcare_code" class="border px-3 py-2 rounded-lg w-full">
+                            <option value="">-- โปรดเลือก --</option>
                             @foreach($healthcareCode as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
@@ -290,18 +379,22 @@
                     <div>
                         <label class="block">การสูบบุหรี่</label>
                         <select wire:model="smoking_freq" class="border px-3 py-2 rounded-lg w-full">
+                            <option value="">-- โปรดเลือก --</option>
                             @foreach($smokingFreq as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
                         </select>
+                        <x-input-error :messages="$errors->get('smoking_freq')" class="mt-2" />
                     </div>
                     <div>
                         <label class="block">การดื่มเครื่องดื่มแอลกอฮอล์</label>
                         <select wire:model="alcohol_freq" class="border px-3 py-2 rounded-lg w-full">
+                            <option value="">-- โปรดเลือก --</option>
                             @foreach($alcoholFreq as $key => $label)
                             <option value="{{ $key }}">{{ $label }}</option>
                             @endforeach
                         </select>
+                        <x-input-error :messages="$errors->get('alcohol_freq')" class="mt-2" />
                     </div>
                 </div>
 
@@ -421,4 +514,17 @@
         const charCode = event.which || event.keyCode;
         return charCode >= 48 && charCode <= 57; // เฉพาะตัวเลข 0-9
     }
+
+
+    function handleResize() {
+        const checkbox = document.getElementById("accordion-1");
+        if (window.innerWidth >= 640) {
+            checkbox.checked = true; // เปิดอัตโนมัติถ้าเป็นหน้าจอใหญ่
+        } else {
+            checkbox.checked = false; // ปิดเมื่อเป็นหน้าจอเล็ก
+        }
+    }
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("load", handleResize); // ทำงานตอนโหลดหน้า  
 </script>
